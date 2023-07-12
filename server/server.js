@@ -11,11 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// route
-app.get("/", (req, res) => {
-  res.json({ message: "welcome to Sound Safari" });
-});
-
+// Listen for requests
 app.listen(PORT, () => {
   console.log(`Listening on localhost:${PORT}`);
 });
