@@ -1,12 +1,21 @@
+// Import packages
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
+// set up port
+const PORT = process.env.PORT;
+
+// create express app
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = process.env.PORT || 3000;
+// route
+app.get("/", (req, res) => {
+  res.json({ message: "welcome to Sound Safari" });
+});
 
 app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
+  console.log(`Listening on localhost:${PORT}`);
 });
