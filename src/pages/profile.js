@@ -1,19 +1,22 @@
 import React from "react";
 
-const Profile = ({ profile }) => {
+const Profile = ({ userData }) => {
   return (
     <div>
-      <h1>Display your profile data</h1>
-      <span id="avatar"></span>
+      <h1>Welcome {userData.display_name}!</h1>
       <ul>
+      <img className="avatar" alt="Profile Avatar" src={userData.images[0].url}></img>
         <li>
-          User ID: <span id="id">{profile.id}</span>
+          Followers: <span id="id">{userData.followers.total}</span>
         </li>
         <li>
-          Email: <span id="email">{profile.email}</span>
+          User ID: <span id="id">{userData.id}</span>
         </li>
         <li>
-          Spotify URI: <span id="uri">{profile.uri}</span>
+          Email: <span id="email">{userData.email}</span>
+        </li>
+        <li>
+          Spotify URI: <span id="uri">{userData.uri}</span>
         </li>
       </ul>
     </div>

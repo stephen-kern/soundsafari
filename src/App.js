@@ -1,9 +1,10 @@
-import React from 'react';
-import Flow from './components/codeFlow';
+import React from "react";
+import Main from "./pages/main";
+
 function App() {
   return (
     <div className="App">
-      <Flow /> 
+      <Main />
     </div>
   );
 }
