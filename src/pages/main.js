@@ -33,6 +33,8 @@ const Main = () => {
 
   const logout = () => {
     window.localStorage.removeItem("accessToken");
+    setAccessToken(null);
+    setUserData(null);
   };
 
   return (
@@ -47,7 +49,7 @@ const Main = () => {
         )}
       </header>
       <div>
-        {userData && <Profile userData={userData}/>}
+        {userData && <Profile userData={userData} accessToken={access_token}/>}
       </div>
     </>
   );
