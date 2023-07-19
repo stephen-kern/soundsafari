@@ -1,13 +1,104 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display:wght@600&display=swap');
+
+:root{
+  --heading: 'Playfair Display', serif;
+  --body: 'Lato', sans-serif;
+  --accent-color: #0d680d;
+  --white: #ffffff;
+}
+
+*{
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  font-family: var(--body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App{
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+h1{
+  font-family: var(--heading);
+}
+
+ul li {
+  text-decoration: none;
+}
+
+.logo{
+  color: var(--white);
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 5rem;
+  background-color: var(--accent-color);
+  padding: 0.8rem 1.2rem;
+}
+
+button, .login-button{
+  border: none;
+  border-radius: 15rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  font-family: var(--body);
+  letter-spacing: 0.05rem;
+}
+
+.login-button{
+  color: black;
+  text-decoration: none;
+  background-color: var(--white);
+}
+
+.login-button:hover{
+  transform: translateY(-1px);
+  background-color: #e9e9e9;
+}
+
+.logout-button{
+  color: black;
+  background-color: var(--white);
+  transition: transform 0.3s ease;
+}
+
+.logout-button:hover{
+  transform: translateY(-1px);
+  background-color: #e9e9e9;
+}
+
+.profile-container{
+  padding: 1rem;
+  display: flex;
+}
+
+.related-artists-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.related-artists-list{
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  justify-content: center;
+}
+
+.related-artists-cards{
+ display: flex;
+ align-items: center;
+ flex-direction: column;
 }

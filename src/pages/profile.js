@@ -28,23 +28,49 @@ const Profile = ({ userData, accessToken }) => {
 
   return (
     <>
-      <div>
-        <h1>Welcome {userData.display_name}!</h1>
-        <ul>
-          <img
-            className="avatar"
-            alt="Profile Avatar"
-            src={userData.images[0].url}
-          ></img>
-          <li>
-            Followers: <span id="id">{userData.followers.total}</span>
-          </li>
-          <li>
-            AKA: <span id="id">{userData.id}</span>
-          </li>
-        </ul>
-      </div>
-      <div>
+      <div className="profile-container">
+        <div class="card">
+          <div className="main-content">
+            <h1>Welcome {userData.display_name}!</h1>
+            <ul>
+              <img
+                className="avatar"
+                alt="Profile Avatar"
+                src={userData.images[0].url}
+              ></img>
+              <li>
+                Followers: <span id="id">{userData.followers.total}</span>
+              </li>
+              <li>
+                AKA: <span id="id">{userData.id}</span>
+              </li>
+            </ul>
+          </div>
+          <div className="related-artists-container">
+            <button onClick={handleGetRecomms}>Find</button>
+            {recommendations && (
+              <>
+                <h3>Artists You May Enjoy</h3>
+                <div className="related-artists-list">
+                  {recommendations.tracks.map((track, index) => (
+                    <div key={index} className="related-artists-cards">
+                      <img
+                        src={track.album.images[0]?.url}
+                        alt={track.nam}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                        }}
+                      />{" "}
+                      <span>{track.artists.map((artist) => artist.name).join(", ")}</span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
         <aside recentData={recentData}>
           <button onClick={() => fetchRecentData(accessToken)}>GO</button>
           {recentData && (
@@ -55,6 +81,7 @@ const Profile = ({ userData, accessToken }) => {
                   <li key={index}>
                     {" "}
                     <img
+                      className="artist-avatar"
                       src={item.images[0]?.url}
                       alt={item.name}
                       style={{
@@ -70,30 +97,7 @@ const Profile = ({ userData, accessToken }) => {
             </>
           )}
         </aside>
-        <div>
-          <button onClick={handleGetRecomms}>Find</button>
-          {recommendations && (
-            <>
-              <h3>Artists You May Enjoy</h3>
-              <ul>
-                {recommendations.tracks.map((track, index) => (
-                  <li key={index}>
-                    <img
-                      src={track.album.images[0]?.url}
-                      alt={track.nam}
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        marginRight: "10px",
-                      }}
-                    />{" "}
-                    {track.artists.map((artist) => artist.name).join(", ")}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
+        
       </div>
     </>
   );

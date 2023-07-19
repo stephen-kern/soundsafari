@@ -40,12 +40,13 @@ const Main = () => {
   return (
     <>
       <header>
+        <h1 className="logo">Sound Safari</h1>
         {!access_token ? (
-          <a href={loginUrl} className="spotify-login-button">
+          <a href={loginUrl} className="login-button">
             Spotify Login
           </a>
         ) : (
-          <button onSubmit={logout}>Logout</button>
+          <button className="logout-button" onSubmit={logout}>Logout</button>
         )}
       </header>
       <div>
