@@ -83,21 +83,29 @@ button, .login-button{
 .profile-container{
   padding: 1rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.related-artists-container{
+.container{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.related-artists-list{
+.artist-container{
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 0.5fr);
+  gap: 0.5rem;
   justify-content: center;
 }
 
-.related-artists-cards{
+.artist-cards span{
+  text-align: center;
+}
+
+.artist-cards{
  display: flex;
  align-items: center;
  flex-direction: column;

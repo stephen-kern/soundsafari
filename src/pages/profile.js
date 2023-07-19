@@ -29,56 +29,56 @@ const Profile = ({ userData, accessToken }) => {
   return (
     <>
       <div className="profile-container">
-        <div class="card">
-          <div className="main-content">
-            <h1>Welcome {userData.display_name}!</h1>
-            <ul>
-              <img
-                className="avatar"
-                alt="Profile Avatar"
-                src={userData.images[0].url}
-              ></img>
-              <li>
-                Followers: <span id="id">{userData.followers.total}</span>
-              </li>
-              <li>
-                AKA: <span id="id">{userData.id}</span>
-              </li>
-            </ul>
-          </div>
-          <div className="related-artists-container">
-            <button onClick={handleGetRecomms}>Find</button>
-            {recommendations && (
-              <>
-                <h3>Artists You May Enjoy</h3>
-                <div className="related-artists-list">
-                  {recommendations.tracks.map((track, index) => (
-                    <div key={index} className="related-artists-cards">
-                      <img
-                        src={track.album.images[0]?.url}
-                        alt={track.nam}
-                        style={{
-                          width: "100px",
-                          height: "100px",
-                        }}
-                      />{" "}
-                      <span>{track.artists.map((artist) => artist.name).join(", ")}</span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
+        <div className="container">
+          <h1>Welcome {userData.display_name}!</h1>
+          <ul>
+            <img
+              className="profile-avatar"
+              alt="Profile Avatar"
+              src={userData.images[0].url}
+            ></img>
+            <li>
+              Followers: <span id="id">{userData.followers.total}</span>
+            </li>
+            <li>
+              AKA: <span id="id">{userData.id}</span>
+            </li>
+          </ul>
         </div>
-
-        <aside recentData={recentData}>
+        <div className="container">
+          <button onClick={handleGetRecomms}>Find</button>
+          {recommendations && (
+            <>
+              <h3>Artists You May Enjoy</h3>
+              <div className="artist-container">
+                {recommendations.tracks.map((track, index) => (
+                  <div key={index} className="artist-cards">
+                    <img
+                      className="artist-avatar"
+                      src={track.album.images[0]?.url}
+                      alt={track.nam}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                      }}
+                    />{" "}
+                    <span>
+                      {track.artists.map((artist) => artist.name).join(", ")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <div className="container" recentData={recentData}>
           <button onClick={() => fetchRecentData(accessToken)}>GO</button>
           {recentData && (
             <>
               <h2>Your recent artists:</h2>
-              <ul>
+              <div className="artist-container">
                 {recentData.items.map((item, index) => (
-                  <li key={index}>
+                  <div key={index} className="artist-cards">
                     {" "}
                     <img
                       className="artist-avatar"
@@ -90,14 +90,13 @@ const Profile = ({ userData, accessToken }) => {
                         marginRight: "10px",
                       }}
                     />{" "}
-                    {item.name}
-                  </li>
+                    <span>{item.name}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </>
           )}
-        </aside>
-        
+        </div>
       </div>
     </>
   );
