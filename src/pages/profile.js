@@ -31,48 +31,22 @@ const Profile = ({ userData, accessToken }) => {
       <div className="profile-container">
         <div className="container">
           <h1>Welcome {userData.display_name}!</h1>
-          <ul>
+          <div className="profile-card">
             <img
-              className="profile-avatar"
+              className="avatar"
               alt="Profile Avatar"
               src={userData.images[0].url}
             ></img>
-            <li>
-              Followers: <span id="id">{userData.followers.total}</span>
-            </li>
-            <li>
-              AKA: <span id="id">{userData.id}</span>
-            </li>
-          </ul>
-        </div>
-        <div className="container">
-          <button onClick={handleGetRecomms}>Find</button>
-          {recommendations && (
-            <>
-              <h3>Artists You May Enjoy</h3>
-              <div className="artist-container">
-                {recommendations.tracks.map((track, index) => (
-                  <div key={index} className="artist-cards">
-                    <img
-                      className="artist-avatar"
-                      src={track.album.images[0]?.url}
-                      alt={track.nam}
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                      }}
-                    />{" "}
-                    <span>
-                      {track.artists.map((artist) => artist.name).join(", ")}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
+            <p>
+              <strong>AKA:</strong> <span>{userData.id}</span>
+            </p>
+            <p>
+              <strong>Followers:</strong> <span>{userData.followers.total}</span>
+            </p>
+          </div>
         </div>
         <div className="container" recentData={recentData}>
-          <button onClick={() => fetchRecentData(accessToken)}>GO</button>
+          <button className="search-button" onClick={() => fetchRecentData(accessToken)}>GO</button>
           {recentData && (
             <>
               <h2>Your recent artists:</h2>
@@ -81,16 +55,33 @@ const Profile = ({ userData, accessToken }) => {
                   <div key={index} className="artist-cards">
                     {" "}
                     <img
-                      className="artist-avatar"
+                      className="avatar"
                       src={item.images[0]?.url}
                       alt={item.name}
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        marginRight: "10px",
-                      }}
                     />{" "}
                     <span>{item.name}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <div className="container">
+          <button className="search-button" onClick={handleGetRecomms}>Find</button>
+          {recommendations && (
+            <>
+              <h2>Artists You May Enjoy</h2>
+              <div className="artist-container">
+                {recommendations.tracks.map((track, index) => (
+                  <div key={index} className="artist-cards">
+                    <img
+                      className="avatar"
+                      src={track.album.images[0]?.url}
+                      alt={track.nam}
+                    />{" "}
+                    <span>
+                      {track.artists.map((artist) => artist.name).join(", ")}
+                    </span>
                   </div>
                 ))}
               </div>
