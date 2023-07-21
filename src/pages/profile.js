@@ -41,16 +41,26 @@ const Profile = ({ userData, accessToken }) => {
               <strong>AKA:</strong> <span>{userData.id}</span>
             </p>
             <p>
-              <strong>Followers:</strong> <span>{userData.followers.total}</span>
+              <strong>Followers:</strong>{" "}
+              <span>{userData.followers.total}</span>
             </p>
+            <button
+              className="search-button"
+              onClick={() => fetchRecentData(accessToken)}
+            >
+              Recent
+            </button>
+            <button className="search-button" onClick={handleGetRecomms}>
+              Related
+            </button>
           </div>
         </div>
+      
         <div className="container" recentData={recentData}>
-          <button className="search-button" onClick={() => fetchRecentData(accessToken)}>GO</button>
           {recentData && (
             <>
-              <h2>Your recent artists:</h2>
-              <div className="artist-container">
+              <h2>Your Recent Artists:</h2>
+              <div className="recent-container">
                 {recentData.items.map((item, index) => (
                   <div key={index} className="artist-cards">
                     {" "}
@@ -66,12 +76,12 @@ const Profile = ({ userData, accessToken }) => {
             </>
           )}
         </div>
+
         <div className="container">
-          <button className="search-button" onClick={handleGetRecomms}>Find</button>
           {recommendations && (
             <>
               <h2>Artists You May Enjoy</h2>
-              <div className="artist-container">
+              <div className="related-container">
                 {recommendations.tracks.map((track, index) => (
                   <div key={index} className="artist-cards">
                     <img

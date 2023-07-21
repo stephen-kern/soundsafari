@@ -1,3 +1,5 @@
+/* Utility classes */
+
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display:wght@600&display=swap');
 
 :root{
@@ -32,12 +34,11 @@ body {
 
 h1{
   font-family: var(--heading);
+  font-size: clamp(0.8rem, 1rem + 4vw, 1.7rem);
   
 }
 
-ul li {
-  text-decoration: none;
-}
+/* Header Classes */
 
 .logo{
   color: var(--white);
@@ -45,12 +46,79 @@ ul li {
 
 header{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   min-height: 5rem;
   background-color: var(--accent-color);
   padding: 0.8rem 1.2rem;
 }
+
+/* Layout */
+
+.profile-container{
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+  min-width: 100%;
+  border: 2px solid red;
+}
+
+.recent-container{
+  margin: 0.5rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  box-shadow: rgb(202, 202, 202) 3px 2px 2px;
+}
+
+.related-container{
+  margin: 0.8rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  box-shadow: rgb(202, 202, 202) 3px 2px 2px;
+}
+
+.artist-cards span{
+  margin-top: 0.3rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.artist-cards{
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+}
+
+.profile-card{
+  text-align: center;
+  margin: 0.5rem;
+  background-color: var(--primary-color);
+  padding: 2rem;
+  border-radius: 3px;
+  box-shadow: rgb(202, 202, 202) 3px 2px 2px;
+}
+
+.profile-card p {
+  margin: 0.3rem;
+}
+
+/* BUTTONS */
 
 button, .login-button{
   border: none;
@@ -84,7 +152,7 @@ button, .login-button{
 }
 
 .search-button{
-  margin-bottom: 1rem;
+  margin: 1rem 0.5rem 0;
   background-color: var(--accent-color);
   color: var(--white);
 }
@@ -93,59 +161,9 @@ button, .login-button{
   background-color: var(--hover);
 }
 
-.profile-container{
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1.5rem 0;
-}
-
-.artist-container{
-  margin-top: 0.8rem;
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: repeat(10, 0.5fr);
-  gap: 1rem;
-  justify-content: center;
-  background-color: var(--primary-color);
-  border-radius: 3px;
-  box-shadow: rgb(202, 202, 202) 3px 2px 2px;
-
-}
-
-.artist-cards span{
-  text-align: center;
-}
-
-.artist-cards{
- display: flex;
- align-items: center;
- flex-direction: column;
-}
+/* Images */
 
 .avatar{
-  width: 100px;
-  height: 100px;
-}
-
-.profile-card{
-  margin-top: 1rem;
-  text-align: center;
-  background-color: var(--primary-color);
-  width: 100%;
-  padding: 2rem;
-  border-radius: 3px;
-  box-shadow: rgb(202, 202, 202) 3px 2px 2px;
-}
-
-.profile-card p {
-  margin: 0.2rem;
+  width: 80px;
+  height: 80px;
 }

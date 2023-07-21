@@ -32,7 +32,7 @@ const Main = () => {
   };
 
   const logout = () => {
-    window.localStorage.removeItem("accessToken");
+    window.localStorage.removeItem("accessToken", access_token);
     setAccessToken(null);
     setUserData(null);
   };
@@ -43,7 +43,7 @@ const Main = () => {
         <h1 className="logo">Sound Safari</h1>
         {!access_token ? (
           <a href={loginUrl} className="login-button">
-            Spotify Login
+            Login
           </a>
         ) : (
           <button className="logout-button" onSubmit={logout}>Logout</button>
