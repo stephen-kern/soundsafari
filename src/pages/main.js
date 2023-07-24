@@ -13,7 +13,6 @@ const Main = () => {
       const { access_token, expires_in } = getSpotifyTokenFromUrl(
         window.location.hash
       );
-      console.log({ access_token });
       localStorage.clear();
       localStorage.setItem("access_token", access_token);
       localStorage.setItem("expiresIn", expires_in);
@@ -46,7 +45,7 @@ const Main = () => {
             Login
           </a>
         ) : (
-          <button className="logout-button" onSubmit={logout}>Logout</button>
+          <button className="logout-button" onClick={logout}>Logout</button>
         )}
       </header>
       <div>

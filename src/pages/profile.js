@@ -5,11 +5,13 @@ import fetchArtistRecomms from "../utils/fetchRecomms";
 const Profile = ({ userData, accessToken }) => {
   const [recentData, setRecentData] = useState(null);
   const [recommendations, setRecommendations] = useState(null);
+  const [isRelatedDisabled, setIsRelatedDisabled] = useState(true);
 
   const fetchRecentData = async (access_token) => {
     try {
       const response = await fetchTopItems(access_token);
       setRecentData(response.data);
+      setIsRelatedDisabled(false);
     } catch (error) {
       console.error("Error fetching top items", error);
     }
@@ -50,12 +52,16 @@ const Profile = ({ userData, accessToken }) => {
             >
               Recent
             </button>
-            <button className="search-button" onClick={handleGetRecomms}>
+            <button
+              className={`search-button ${isRelatedDisabled ? 'disabled' : ''}`} // conditionally render classname using state
+              onClick={handleGetRecomms}
+              disabled={isRelatedDisabled}
+            >
               Related
             </button>
           </div>
         </div>
-      
+
         <div className="container" recentData={recentData}>
           {recentData && (
             <>
