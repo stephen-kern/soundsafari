@@ -3,6 +3,7 @@ import { loginUrl } from "../utils/spotifyAuth";
 import getSpotifyTokenFromUrl from "../utils/spotifyToken";
 import fetchProfile from "../utils/fetchProfile";
 import Profile from "./profile";
+import Hero from "../components/Hero/hero";
 
 const Main = () => {
   const [access_token, setAccessToken] = useState(null);
@@ -49,6 +50,7 @@ const Main = () => {
         )}
       </header>
       <div>
+        {!userData && <Hero />}
         {userData && <Profile userData={userData} accessToken={access_token}/>}
       </div>
     </>

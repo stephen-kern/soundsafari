@@ -53,7 +53,7 @@ const Profile = ({ userData, accessToken }) => {
               Recent
             </button>
             <button
-              className={`search-button ${isRelatedDisabled ? 'disabled' : ''}`} // conditionally render classname using state
+              className={`search-button ${isRelatedDisabled ? "disabled" : ""}`} // conditionally render classname using state
               onClick={handleGetRecomms}
               disabled={isRelatedDisabled}
             >
@@ -75,7 +75,13 @@ const Profile = ({ userData, accessToken }) => {
                       src={item.images[0]?.url}
                       alt={item.name}
                     />{" "}
-                    <span>{item.name}</span>
+                    <a
+                      href={item.external_urls.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.name}
+                    </a>
                   </div>
                 ))}
               </div>
@@ -95,9 +101,13 @@ const Profile = ({ userData, accessToken }) => {
                       src={track.album.images[0]?.url}
                       alt={track.nam}
                     />{" "}
-                    <span>
+                    <a
+                      href={track.artists[0].external_urls.spotify}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {track.artists.map((artist) => artist.name).join(", ")}
-                    </span>
+                    </a>
                   </div>
                 ))}
               </div>
