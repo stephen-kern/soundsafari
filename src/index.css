@@ -24,6 +24,7 @@ body {
   font-family: var(--body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
 }
 
 .App{
@@ -176,4 +177,50 @@ button, .login-button{
   height: 150px;
   aspect-ratio: 1/1;
   object-fit: cover;
+}
+
+/* Hero Section */
+
+/* .hero-container{
+  display: grid;
+  place-content: center;
+  place-items: center;
+  height: 100vh;
+  margin: 0 auto;
+  background-image: url(./assets/hero1.jpg);
+  background-size: cover;
+  background-position: bottom;
+} */
+
+.hero-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  margin: 0 auto;
+  border: solid #0d680d 3px;
+  gap: 0.7rem;
+  padding: 1rem;
+  background-image: url(/src/assets/hero1.jpg); 
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-cta-container {
+  margin: 2rem 0;
+  border: solid #0d680d 3px;
+  display: grid;
+  gap: 0.7rem;
+  max-width: 55rem;
+  place-items: center;
+  padding: 3rem;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.hero-paragraph{
+  text-align: center;
+  line-height: 1.4;
+  font-size: 1.05rem;
 }
