@@ -35,7 +35,7 @@ body {
 
 h1{
   font-family: var(--heading);
-  font-size: clamp(1.13rem, 1rem + 1.22vw, 1.75rem);
+  font-size: clamp(1.13rem, 1rem + 1.22vw, 1.8rem);
 }
 
 h2,h3,h4{
@@ -179,41 +179,30 @@ button, .login-button{
   object-fit: cover;
 }
 
+.profile-avatar{
+  width: 64px;
+  height: 64px;
+  border-radius: 40px;
+}
+
 /* Hero Section */
 
-/* .hero-container{
-  display: grid;
-  place-content: center;
-  place-items: center;
-  height: 100vh;
-  margin: 0 auto;
-  background-image: url(./assets/hero1.jpg);
-  background-size: cover;
-  background-position: bottom;
-} */
-
 .hero-container {
-  position: relative;
   display: grid;
   place-items: center;
-  height: 100vh;
-  margin: 0 auto;
-  border: solid #0d680d 3px;
-  gap: 0.7rem;
-  padding: 1rem;
+  height: calc(100vh - 5rem);
   background-image: url(/src/assets/hero1.jpg); 
   background-size: cover;
   background-position: center;
 }
 
 .hero-cta-container {
-  margin: 2rem 0;
   border: solid #0d680d 3px;
   display: grid;
-  gap: 0.7rem;
+  gap: 1.3rem;
   max-width: 55rem;
   place-items: center;
-  padding: 3rem;
+  padding: 2.5rem;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
@@ -222,5 +211,5 @@ button, .login-button{
 .hero-paragraph{
   text-align: center;
   line-height: 1.4;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
 }

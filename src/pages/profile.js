@@ -35,7 +35,7 @@ const Profile = ({ userData, accessToken }) => {
           <h1>Welcome {userData.display_name}!</h1>
           <div className="profile-card">
             <img
-              className="avatar"
+              className="profile-avatar"
               alt="Profile Avatar"
               src={userData.images[0].url}
             ></img>
