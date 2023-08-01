@@ -74,19 +74,6 @@ header{
   flex-direction: column;
 }
 
-/* .profile-icons{
-  width: 20px;
-  height: 20px;
-}
-
-.profile-items{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 40rem;
-  margin: 0 auto;
-} */
-
 .container{
   display: flex;
   flex-direction: column;

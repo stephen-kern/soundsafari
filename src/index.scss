@@ -6,6 +6,7 @@ $heading-font: 'Playfair Display', sans-serif;
 .profile-header {
     display: grid;
     place-items: center;
+    margin: 0 0 2rem;
   
     .profile-items {
       display: grid;
@@ -22,8 +23,6 @@ $heading-font: 'Playfair Display', sans-serif;
       .profile-icons-info{
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-
       }
   
       .profile-icons {
