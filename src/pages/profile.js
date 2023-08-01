@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { PiUsersBold, PiIdentificationBadge } from "react-icons/pi";
 import fetchTopItems from "../utils/fetchTopItems";
 import fetchArtistRecomms from "../utils/fetchRecomms";
 
@@ -30,36 +31,50 @@ const Profile = ({ userData, accessToken }) => {
 
   return (
     <>
+      
+
+
+
+
+
+
+
+
+
       <div className="profile-container">
-        <div className="container">
-          <h1>Welcome {userData.display_name}!</h1>
-          <div className="profile-card">
+        <div className="profile-header">
+          <div className="profile-items">
             <img
               className="profile-avatar"
               alt="Profile Avatar"
               src={userData.images[0].url}
             ></img>
-            <p>
-              <strong>AKA:</strong> <span>{userData.id}</span>
-            </p>
-            <p>
-              <strong>Followers:</strong>{" "}
-              <span>{userData.followers.total}</span>
-            </p>
-            <button
-              className="search-button"
-              onClick={() => fetchRecentData(accessToken)}
-            >
-              Recent
-            </button>
-            <button
-              className={`search-button ${isRelatedDisabled ? "disabled" : ""}`} // conditionally render classname using state
-              onClick={handleGetRecomms}
-              disabled={isRelatedDisabled}
-            >
-              Related
-            </button>
+            <div className="profile-icons-info">
+              <PiIdentificationBadge className="profile-icons" />
+              <p>{userData.id}</p>
+            </div>
+            <div className="profile-icons-info">
+              <PiUsersBold className="profile-icons" />
+              <p>{userData.followers.total}</p>
+            </div>
           </div>
+        </div>
+
+        <div className="profile-card">
+          <h1>Welcome {userData.display_name}!</h1>
+          <button
+            className="search-button"
+            onClick={() => fetchRecentData(accessToken)}
+          >
+            Recent
+          </button>
+          <button
+            className={`search-button ${isRelatedDisabled ? "disabled" : ""}`} // conditionally render classname using state
+            onClick={handleGetRecomms}
+            disabled={isRelatedDisabled}
+          >
+            Related
+          </button>
         </div>
 
         <div className="container" recentData={recentData}>

@@ -2,3 +2,33 @@
 
 
 $heading-font: 'Playfair Display', sans-serif;
+
+.profile-header {
+    display: grid;
+    place-items: center;
+  
+    .profile-items {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: 1rem;
+      align-items: center;
+  
+      .profile-avatar {
+        width: 64px; /* Adjust the size of the profile avatar */
+        height: 64px;
+        border-radius: 50%;
+      }
+
+      .profile-icons-info{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+      }
+  
+      .profile-icons {
+        font-size: 1.5rem; /* Adjust the size of the icons as needed */
+      }
+    }
+  }
+  
