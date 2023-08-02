@@ -6,17 +6,17 @@ $heading-font: 'Playfair Display', sans-serif;
 .profile-header {
     display: grid;
     place-items: center;
-    margin: 0 0 2rem;
   
     .profile-items {
       display: grid;
-      grid-template-columns: repeat(4, auto);
-      gap: 1rem;
+      grid-template-rows: repeat(4, auto);
+      gap: 0.5rem;
       align-items: center;
+      place-items: center;
   
       .profile-avatar {
-        width: 64px; /* Adjust the size of the profile avatar */
-        height: 64px;
+        width: 100px; /* Adjust the size of the profile avatar */
+        height: 100px;
         border-radius: 50%;
       }
 

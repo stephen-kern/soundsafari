@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { PiUsersBold, PiIdentificationBadgeBold } from "react-icons/pi";
+import { PiUsersBold } from "react-icons/pi";
 import fetchTopItems from "../utils/fetchTopItems";
 import fetchArtistRecomms from "../utils/fetchRecomms";
 
 const Profile = ({ userData, accessToken }) => {
   const [recentData, setRecentData] = useState(null);
-  const [recommendations, setRecommendations] = useState(null);
+  const [relatedData, setRelatedData] = useState(null);
   const [isRelatedDisabled, setIsRelatedDisabled] = useState(true);
 
   const fetchRecentData = async (access_token) => {
@@ -24,7 +24,7 @@ const Profile = ({ userData, accessToken }) => {
       const seedArtistIds = artistIds.slice(0, 5);
       const response = await fetchArtistRecomms(accessToken, seedArtistIds);
       if (response && response.data) {
-        setRecommendations(response.data);
+        setRelatedData(response.data);
       }
     }
   };
@@ -40,10 +40,10 @@ const Profile = ({ userData, accessToken }) => {
                 alt="Profile Avatar"
                 src={userData.images[0].url}
               />
-              <div className="profile-icons-info">
+              {/* <div className="profile-icons-info">
                 <PiIdentificationBadgeBold className="profile-icons" />
                 <p>{userData.id}</p>
-              </div>
+              </div> */}
               <div className="profile-icons-info">
                 <PiUsersBold className="profile-icons" />
                 <p>{userData.followers.total}</p>
@@ -99,11 +99,11 @@ const Profile = ({ userData, accessToken }) => {
         </div>
 
         <div className="container">
-          {recommendations && (
+          {relatedData && (
             <>
               <h2>Artists You May Enjoy</h2>
               <div className="related-container">
-                {recommendations.tracks.map((track, index) => (
+                {relatedData.tracks.map((track, index) => (
                   <div key={index} className="artist-cards">
                     <img
                       className="avatar"
