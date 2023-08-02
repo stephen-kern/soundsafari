@@ -32,7 +32,6 @@ const Profile = ({ userData, accessToken }) => {
   return (
     <>
       <div className="profile-container">
-
         <div className="profile-card">
           <div className="profile-header">
             <div className="profile-items">
@@ -53,9 +52,9 @@ const Profile = ({ userData, accessToken }) => {
           </div>
 
           <h1>Welcome {userData.display_name}!</h1>
-          
+
           <button
-            className="search-button"
+            className={`search-button`}
             onClick={() => fetchRecentData(accessToken)}
           >
             Recent
@@ -69,7 +68,10 @@ const Profile = ({ userData, accessToken }) => {
           </button>
         </div>
 
-        <div className="container" recentData={recentData}>
+        <div
+          className="container"
+          recentData={recentData}
+        >
           {recentData && (
             <>
               <h2>Your Recent Artists:</h2>

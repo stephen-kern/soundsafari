@@ -122,6 +122,10 @@ header{
   box-shadow: rgb(202, 202, 202) 3px 2px 2px;
 }
 
+.hide-tabs{
+  display: none;
+}
+
 .profile-card p {
   margin: 0.3rem;
 }
