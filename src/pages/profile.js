@@ -2,29 +2,36 @@ import React, { useState } from "react";
 import { PiUsersBold } from "react-icons/pi";
 import fetchTopItems from "../utils/fetchTopItems";
 import fetchArtistRecomms from "../utils/fetchRecomms";
+import Tabs from "../components/Tabs/tabs";
 
 const Profile = ({ userData, accessToken }) => {
   const [recentData, setRecentData] = useState(null);
   const [relatedData, setRelatedData] = useState(null);
-  const [isRelatedDisabled, setIsRelatedDisabled] = useState(true);
+  const [isRelatedDisabled, setIsRelatedDisabled] = useState(false);
 
   const fetchRecentData = async (access_token) => {
-    try {
-      const response = await fetchTopItems(access_token);
-      setRecentData(response.data);
-      setIsRelatedDisabled(false);
-    } catch (error) {
-      console.error("Error fetching top items", error);
+    if (!recentData) {
+      try {
+        const response = await fetchTopItems(access_token);
+        setRecentData(response.data);
+      } catch (error) {
+        console.error("Error fetching top items", error);
+      }
     }
   };
 
   const handleGetRecomms = async () => {
-    if (recentData) {
-      const artistIds = recentData.items.map((item) => item.id);
-      const seedArtistIds = artistIds.slice(0, 5);
-      const response = await fetchArtistRecomms(accessToken, seedArtistIds);
-      if (response && response.data) {
-        setRelatedData(response.data);
+    const artistIds = recentData.items.map((item) => item.id);
+    const seedArtistIds = artistIds.slice(0, 5);
+    if (!isRelatedDisabled && !relatedData) {
+      try {
+        const response = await fetchArtistRecomms(accessToken, seedArtistIds);
+        if (response && response.data) {
+          setRelatedData(response.data);
+          setIsRelatedDisabled(true);
+        }
+      } catch (error) {
+        console.error("Error fetching recommendations", error);
       }
     }
   };
@@ -40,10 +47,6 @@ const Profile = ({ userData, accessToken }) => {
                 alt="Profile Avatar"
                 src={userData.images[0].url}
               />
-              {/* <div className="profile-icons-info">
-                <PiIdentificationBadgeBold className="profile-icons" />
-                <p>{userData.id}</p>
-              </div> */}
               <div className="profile-icons-info">
                 <PiUsersBold className="profile-icons" />
                 <p>{userData.followers.total}</p>
@@ -53,7 +56,12 @@ const Profile = ({ userData, accessToken }) => {
 
           <h1>Welcome {userData.display_name}!</h1>
 
-          <button
+          <Tabs
+            recentData={fetchRecentData}
+            relatedData={handleGetRecomms}
+          />
+
+          {/* <button
             className={`search-button`}
             onClick={() => fetchRecentData(accessToken)}
           >
@@ -65,13 +73,10 @@ const Profile = ({ userData, accessToken }) => {
             disabled={isRelatedDisabled}
           >
             Related
-          </button>
+          </button> */}
         </div>
 
-        <div
-          className="container"
-          recentData={recentData}
-        >
+        <div className="container" recentData={recentData}>
           {recentData && (
             <>
               <h2>Your Recent Artists:</h2>

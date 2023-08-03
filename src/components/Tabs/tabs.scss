@@ -1,0 +1,20 @@
+
+.tabs-container{
+    display: flex;
+}
+
+.tabs{
+    font-size: 1rem;
+    padding: 10px 60px;
+    cursor: pointer;
+    opacity: 0.6;
+    background: white;
+    border: 0;
+    outline: 0;
+    border-radius: 0;
+}
+
+.active-tab{
+    border-bottom: 2px solid black;
+    opacity: 1;
+}
