@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { loginUrl } from "../utils/spotifyAuth";
 import getSpotifyTokenFromUrl from "../utils/spotifyToken";
-import fetchProfile from "../utils/fetchProfile";
+import fetchAllData from "../utils/fetchAllData";
 import Profile from "./profile";
 import Hero from "../components/Hero/hero";
 
 const Main = () => {
   const [access_token, setAccessToken] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [recentData, setRecentData] = useState(null);
+  const [relatedData, setRelatedData] = useState(null);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -18,21 +20,24 @@ const Main = () => {
       localStorage.setItem("access_token", access_token);
       localStorage.setItem("expiresIn", expires_in);
       setAccessToken(access_token);
-      fetchUserProfile(access_token);
+
+      fetchAllData(access_token)
+        .then((data) => {
+          if (data) {
+            setUserData(data.profileData);
+            setRecentData(data.recentData);
+            setRelatedData(data.relatedData);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data", error);
+        });
     }
   }, []);
 
-  const fetchUserProfile = async (access_token) => {
-    try {
-      const response = await fetchProfile(access_token);
-      setUserData(response.data);
-    } catch (error) {
-      console.error("Error fetching user profile:", error);
-    }
-  };
-
   const logout = () => {
     window.localStorage.removeItem("accessToken", access_token);
+    window.localStorage.removeItem("expiresIn");
     setAccessToken(null);
     setUserData(null);
   };
@@ -46,12 +51,21 @@ const Main = () => {
             Login
           </a>
         ) : (
-          <button className="logout-button" onClick={logout}>Logout</button>
+          <button className="logout-button" onClick={logout}>
+            Logout
+          </button>
         )}
       </header>
       <div>
         {!userData && <Hero />}
-        {userData && <Profile userData={userData} accessToken={access_token}/>}
+        {userData && (
+          <Profile
+            userData={userData}
+            accessToken={access_token}
+            recentData={recentData}
+            relatedData={relatedData}
+          />
+        )}
       </div>
     </>
   );

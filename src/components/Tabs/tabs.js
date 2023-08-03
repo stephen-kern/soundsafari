@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import "../Tabs/tabs.scss";
 
-const Tabs = (fetchRecentData, handleGetRecomms) => {
+const Tabs = ({ onTabClick }) => {
   const tabTypes = ["Recent", "Related"];
   const [activeTab, setActiveTab] = useState(tabTypes[0]);
 
   const handleTabClick = (tabType) => {
     setActiveTab(tabType);
-    if (tabType === "Recent") {
-        fetchRecentData();        
-    } else if (tabType === "Related"){
-        handleGetRecomms();
-    }
-  }
+    onTabClick(tabType);
+  };
 
   return (
     <>

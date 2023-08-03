@@ -1,43 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { PiUsersBold } from "react-icons/pi";
-import fetchTopItems from "../utils/fetchTopItems";
-import fetchArtistRecomms from "../utils/fetchRecomms";
 import Tabs from "../components/Tabs/tabs";
 
-const Profile = ({ userData, accessToken }) => {
-  const [recentData, setRecentData] = useState(null);
-  const [relatedData, setRelatedData] = useState(null);
-  const [isRelatedDisabled, setIsRelatedDisabled] = useState(false);
-
-  const fetchRecentData = async (access_token) => {
-    if (!recentData) {
-      try {
-        const response = await fetchTopItems(access_token);
-        setRecentData(response.data);
-      } catch (error) {
-        console.error("Error fetching top items", error);
-      }
-    }
-  };
-
-  const handleGetRecomms = async () => {
-    const artistIds = recentData.items.map((item) => item.id);
-    const seedArtistIds = artistIds.slice(0, 5);
-    if (!isRelatedDisabled && !relatedData) {
-      try {
-        const response = await fetchArtistRecomms(accessToken, seedArtistIds);
-        if (response && response.data) {
-          setRelatedData(response.data);
-          setIsRelatedDisabled(true);
-        }
-      } catch (error) {
-        console.error("Error fetching recommendations", error);
-      }
-    }
-  };
-
+const Profile = ({
+  userData,
+  accessToken,
+  recentData,
+  relatedData,
+  activeTab,
+}) => {
   return (
     <>
+      
+
       <div className="profile-container">
         <div className="profile-card">
           <div className="profile-header">
@@ -56,27 +31,10 @@ const Profile = ({ userData, accessToken }) => {
 
           <h1>Welcome {userData.display_name}!</h1>
 
-          <Tabs
-            recentData={fetchRecentData}
-            relatedData={handleGetRecomms}
-          />
-
-          {/* <button
-            className={`search-button`}
-            onClick={() => fetchRecentData(accessToken)}
-          >
-            Recent
-          </button>
-          <button
-            className={`search-button ${isRelatedDisabled ? "disabled" : ""}`} // conditionally render classname using state
-            onClick={handleGetRecomms}
-            disabled={isRelatedDisabled}
-          >
-            Related
-          </button> */}
+          <Tabs recentData={recentData} relatedData={relatedData} />
         </div>
 
-        <div className="container" recentData={recentData}>
+        <div className="container">
           {recentData && (
             <>
               <h2>Your Recent Artists:</h2>
