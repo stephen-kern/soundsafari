@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "../Tabs/tabs.scss";
 
-const Tabs = ({ onTabClick }) => {
+const Tabs = ({ onTabClick, activeTab }) => {
   const tabTypes = ["Recent", "Related"];
-  const [activeTab, setActiveTab] = useState(tabTypes[0]);
 
   const handleTabClick = (tabType) => {
-    setActiveTab(tabType);
     onTabClick(tabType);
   };
 

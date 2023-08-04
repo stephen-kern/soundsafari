@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { PiUsersBold } from "react-icons/pi";
 import Tabs from "../components/Tabs/tabs";
 
-const Profile = ({
-  userData,
-  accessToken,
-  recentData,
-  relatedData,
-  activeTab,
-}) => {
+const Profile = ({ userData, accessToken, recentData, relatedData }) => {
+  const [activeTab, setActiveTab] = useState("Recent");
+  const handleTabClick = (tabType) => {
+    setActiveTab(tabType);
+  };
+
   return (
     <>
-      
-
-      <div className="profile-container">
+      {/* <div className="profile-container"> */}
         <div className="profile-card">
           <div className="profile-header">
             <div className="profile-items">
@@ -31,11 +28,11 @@ const Profile = ({
 
           <h1>Welcome {userData.display_name}!</h1>
 
-          <Tabs recentData={recentData} relatedData={relatedData} />
+          <Tabs onTabClick={handleTabClick} activeTab={activeTab} />
         </div>
 
         <div className="container">
-          {recentData && (
+          {activeTab === "Recent" && recentData && (
             <>
               <h2>Your Recent Artists:</h2>
               <div className="recent-container">
@@ -62,7 +59,7 @@ const Profile = ({
         </div>
 
         <div className="container">
-          {relatedData && (
+          {activeTab === "Related" && relatedData && (
             <>
               <h2>Artists You May Enjoy</h2>
               <div className="related-container">
@@ -86,7 +83,7 @@ const Profile = ({
             </>
           )}
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };
