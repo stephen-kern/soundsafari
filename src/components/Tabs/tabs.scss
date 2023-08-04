@@ -4,11 +4,13 @@ $hover-color: #0d680dd4;
 .tabs-container{
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
 }
 
 .tabs{
+    display: flex;
+    justify-content: center;
     font-size: 1rem;
     color: black;
     padding: 10px 60px;
@@ -30,3 +32,11 @@ $hover-color: #0d680dd4;
     border-bottom: 2px solid black;
     opacity: 1;
 }
+
+@media (max-width: 430px) {
+    .tabs {
+        width: 8rem;
+    }
+
+    
+  }
