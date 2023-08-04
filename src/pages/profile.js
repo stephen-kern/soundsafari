@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { PiUsersBold } from "react-icons/pi";
+import { PiUsersBold, PiArrowRightBold } from "react-icons/pi";
 import Tabs from "../components/Tabs/tabs";
+import "../index.scss";
 
 const Profile = ({ userData, accessToken, recentData, relatedData }) => {
   const [activeTab, setActiveTab] = useState("Recent");
   const handleTabClick = (tabType) => {
     setActiveTab(tabType);
+  };
+
+  const handleCardClick = (item, artistName) => {
+    // Open the artist's Spotify page in a new tab
+    if (item.external_urls && item.external_urls.spotify) {
+      window.open(item.external_urls.spotify, "_blank");
+    }
   };
 
   return (
@@ -34,22 +42,23 @@ const Profile = ({ userData, accessToken, recentData, relatedData }) => {
         <div>
           <div className="container">
             <h2>Your Recent Artists</h2>
-            <div className="recent-container">
+            <div className="data-container">
               {recentData.items.map((item, index) => (
-                <div key={index} className="artist-cards">
+                <div
+                  key={index}
+                  className="artist-cards"
+                  onClick={() => handleCardClick(item)}
+                >
                   {" "}
                   <img
                     className="avatar"
                     src={item.images[0]?.url}
                     alt={item.name}
                   />{" "}
-                  <a
-                    href={item.external_urls.spotify}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.name}
-                  </a>
+                  <p>
+                    {item.name} 
+                  </p>
+                  <PiArrowRightBold className="profile-icons" />
                 </div>
               ))}
             </div>
@@ -58,27 +67,26 @@ const Profile = ({ userData, accessToken, recentData, relatedData }) => {
       )}
 
       {activeTab === "Related" && relatedData && (
-        <div className="flex-center">
-          <div className="container">
-            <h2>Artists You May Enjoy</h2>
-            <div className="related-container">
-              {relatedData.tracks.map((track, index) => (
-                <div key={index} className="artist-cards">
-                  <img
-                    className="avatar"
-                    src={track.album.images[0]?.url}
-                    alt={track.nam}
-                  />{" "}
-                  <a
-                    href={track.artists[0].external_urls.spotify}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {track.artists.map((artist) => artist.name).join(", ")}
-                  </a>
-                </div>
-              ))}
-            </div>
+        <div className="container">
+          <h2>Artists You May Enjoy</h2>
+          <div className="data-container">
+            {relatedData.tracks.map((track, index) => (
+              <div
+                key={index}
+                className="artist-cards"
+                onClick={() => handleCardClick(track.artists[0].name)}
+              >
+                <img
+                  className="avatar"
+                  src={track.album.images[0]?.url}
+                  alt={track.nam}
+                />{" "}
+                <p>
+                  {track.artists.map((artist) => artist.name).join(", ")}
+                </p>
+                <PiArrowRightBold className="icon" />
+              </div>
+            ))}
           </div>
         </div>
       )}

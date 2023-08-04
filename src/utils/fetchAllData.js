@@ -25,7 +25,7 @@ async function fetchRelatedData(access_token, artistIds) {
   try {
     const seedArtistsIds = artistIds.slice(0, 5);
     const result = await axios.get(
-      `https://api.spotify.com/v1/recommendations?limit=12&seed_artists=${seedArtistsIds.join(
+      `https://api.spotify.com/v1/recommendations?limit=10&seed_artists=${seedArtistsIds.join(
         ","
       )}`,
       {

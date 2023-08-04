@@ -1,5 +1,4 @@
 import React from "react";
-import "../Tabs/tabs.scss";
 
 const Tabs = ({ onTabClick, activeTab }) => {
   const tabTypes = ["Recent", "Related"];
