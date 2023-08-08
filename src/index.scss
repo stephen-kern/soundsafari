@@ -7,7 +7,8 @@ $body-font: 'Lato', sans-serif;
 $accent-color: #0d680d;
 $hover-color: #0d680dd4;
 $white-color: #ffffff;
-$primary-color: #EFDECD;
+$secondary-color: #aaaaaa;
+$primary-color: #453F3C;
 
 * {
   margin: 0;
@@ -22,13 +23,13 @@ body {
   font-family: $body-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100%;
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  height: 100vh;
+  background-color: $primary-color;
 }
 
 h1 {
@@ -75,12 +76,12 @@ header {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  background-color: $primary-color;
+  background-color: $secondary-color;
   max-width: 67rem;
   margin: 0.5rem auto;
   padding: 1rem;
   border-radius: 3px;
-  box-shadow: rgb(202, 202, 202) 3px 2px 2px;
+  box-shadow: rgb(135, 134, 134) 3px 2px 2px;
 }
 
 .data-container {
@@ -142,12 +143,12 @@ header {
 
 .profile-card {
   text-align: center;
-  background-color: $primary-color;
+  background-color: $secondary-color;
   max-width: 67rem;
   margin: 0.5rem auto;
   padding: 1rem;
   border-radius: 3px;
-  box-shadow: rgb(202, 202, 202) 3px 2px 2px;
+  box-shadow: rgb(135, 134, 134) 3px 2px 2px;
 }
 
 .profile-card p {
@@ -183,8 +184,10 @@ header {
 }
 
 .active-tab{
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid $primary-color;
     opacity: 1;
+    color: $primary-color;
+    background-color: $white-color;
 }
 
 @media (max-width: 430px) {
@@ -229,6 +232,7 @@ button, .login-button {
   height: 150px;
   aspect-ratio: 1/1;
   object-fit: cover;
+  border-radius: 3px;
 }
 
 
@@ -263,7 +267,7 @@ button, .login-button {
   font-size: 1.1rem;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 950px) {
   .data-container {
     grid-template-columns: repeat(5, 1fr);
   }

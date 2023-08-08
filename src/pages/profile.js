@@ -55,9 +55,7 @@ const Profile = ({ userData, accessToken, recentData, relatedData }) => {
                     src={item.images[0]?.url}
                     alt={item.name}
                   />{" "}
-                  <p>
-                    {item.name} 
-                  </p>
+                  <p>{item.name}</p>
                   <PiArrowRightBold className="profile-icons" />
                 </div>
               ))}
@@ -70,23 +68,31 @@ const Profile = ({ userData, accessToken, recentData, relatedData }) => {
         <div className="container">
           <h2>Artists You May Enjoy</h2>
           <div className="data-container">
-            {relatedData.tracks.map((track, index) => (
-              <div
-                key={index}
-                className="artist-cards"
-                onClick={() => handleCardClick(track.artists[0].name)}
-              >
-                <img
-                  className="avatar"
-                  src={track.album.images[0]?.url}
-                  alt={track.nam}
-                />{" "}
-                <p>
-                  {track.artists.map((artist) => artist.name).join(", ")}
-                </p>
-                <PiArrowRightBold className="icon" />
-              </div>
-            ))}
+            {relatedData.tracks
+              .filter((track) => {
+                const artistsInRecent = recentData.items.map(
+                  (item) => item.name
+                );
+                return !track.artists.some((artist) =>
+                  artistsInRecent.includes(artist.name)
+                );
+              })
+              .slice(0, 15) // take first 10 tracks after filtering.
+              .map((track, index) => (
+                <div
+                  key={index}
+                  className="artist-cards"
+                  onClick={() => handleCardClick(track.artists[0].name)}
+                >
+                  <img
+                    className="avatar"
+                    src={track.album.images[0]?.url}
+                    alt={track.name}
+                  />{" "}
+                  <p>{track.artists.map((artist) => artist.name).join(", ")}</p>
+                  <PiArrowRightBold className="icon" />
+                </div>
+              ))}
           </div>
         </div>
       )}
