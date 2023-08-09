@@ -43,10 +43,13 @@ const Main = () => {
   }, []);
 
   const logout = () => {
-    window.localStorage.removeItem("accessToken", access_token);
+    window.localStorage.removeItem("access_token");
     window.localStorage.removeItem("expiresIn");
     setAccessToken(null);
     setUserData(null);
+
+    // Reset the browser URL to the home route
+    window.location.replace("https://soundsafari-music.vercel.app");
   };
 
   return (
