@@ -9,7 +9,7 @@ const Profile = ({ userData, accessToken, recentData, relatedData }) => {
     setActiveTab(tabType);
   };
 
-  const handleCardClick = (item, artistName) => {
+  const handleCardClick = (item) => {
     // Open the artist's Spotify page in a new tab
     if (item.external_urls && item.external_urls.spotify) {
       window.open(item.external_urls.spotify, "_blank");
@@ -82,7 +82,7 @@ const Profile = ({ userData, accessToken, recentData, relatedData }) => {
                 <div
                   key={index}
                   className="artist-cards"
-                  onClick={() => handleCardClick(track.artists[0].name)}
+                  onClick={() => handleCardClick(track)}
                 >
                   <img
                     className="avatar"

@@ -4,12 +4,14 @@ import getSpotifyTokenFromUrl from "../utils/spotifyToken";
 import fetchAllData from "../utils/fetchAllData";
 import Profile from "./profile";
 import Hero from "../components/Hero/hero";
+import LoadingScreen from "../components/Loading/loading";
 
 const Main = () => {
   const [access_token, setAccessToken] = useState(null);
   const [userData, setUserData] = useState(null);
   const [recentData, setRecentData] = useState(null);
   const [relatedData, setRelatedData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -31,6 +33,9 @@ const Main = () => {
         })
         .catch((error) => {
           console.error("Error fetching data", error);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
   }, []);
@@ -57,14 +62,20 @@ const Main = () => {
         )}
       </header>
       <div>
-        {!userData && <Hero />}
-        {userData && (
-          <Profile
-            userData={userData}
-            accessToken={access_token}
-            recentData={recentData}
-            relatedData={relatedData}
-          />
+        {isLoading ? (
+          <LoadingScreen />
+        ) : (
+          <>
+            {!userData && <Hero />}
+            {userData && (
+              <Profile
+                userData={userData}
+                accessToken={access_token}
+                recentData={recentData}
+                relatedData={relatedData}
+              />
+            )}
+          </>
         )}
       </div>
     </>
