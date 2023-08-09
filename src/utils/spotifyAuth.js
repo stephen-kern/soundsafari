@@ -1,7 +1,7 @@
 
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 
-const redirectUri = "http://localhost:3000/profile";
+const redirectUri = "https://soundsafari-music.vercel.app/profile";
 
 const clientId = "bb5ea3354fbd4948ace13353fa10d3a2";
 
