@@ -28,7 +28,7 @@ body {
 .App {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background-color: $primary-color;
 }
 
@@ -297,4 +297,10 @@ button, .login-button {
   .data-container {
     grid-template-columns: repeat(5, 1fr);
   }
+}
+
+@media (max-width: 416px){
+    .profile-card, .container{
+        margin: 0.5rem;
+    }
 }

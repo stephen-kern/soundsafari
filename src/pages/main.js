@@ -11,7 +11,7 @@ const Main = () => {
   const [userData, setUserData] = useState(null);
   const [recentData, setRecentData] = useState(null);
   const [relatedData, setRelatedData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -22,6 +22,8 @@ const Main = () => {
       localStorage.setItem("access_token", access_token);
       localStorage.setItem("expiresIn", expires_in);
       setAccessToken(access_token);
+
+      setIsLoading(true);
 
       fetchAllData(access_token)
         .then((data) => {
