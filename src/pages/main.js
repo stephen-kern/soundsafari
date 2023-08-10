@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { loginUrl } from "../utils/spotifyAuth";
+import { tokenRequest } from "../utils/AuthFlow";
 import getSpotifyTokenFromUrl from "../utils/spotifyToken";
 import fetchAllData from "../utils/fetchAllData";
 import Profile from "./profile";
@@ -57,7 +58,7 @@ const Main = () => {
       <header>
         <h1 className="logo">Sound Safari</h1>
         {!access_token ? (
-          <a href={loginUrl} className="login-button">
+          <a href={tokenRequest()} className="login-button">
             Login
           </a>
         ) : (
